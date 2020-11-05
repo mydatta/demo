@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localhost</title>
+    <!-- the star of the show - the Vue library! -->
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        // when life is settled, load up the fun stuff
+        document.addEventListener('DOMContentLoaded', function () {
+            new Vue({
+                el: '#sg1',
+                // define data - initial display text
+                data: {
+                    m1: "You got to let me know"
+                },
+                mounted() {
+                    console.log('mounted')
+                    axios.get('http://localhost:7070')
+                        .then(function (response) {
+                            console.log(response)
+                            this.m1 = response.data
+                        })
+                }
+            })
+        })
+    </script>
+</head>
+
+<body>
+
+    <!-- text -->
+    <div id="sg1">
+        <p>{{ m1 }}</p>
+    </div>
+</body>
+
+</html>
